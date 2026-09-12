@@ -10,7 +10,7 @@ const document = {
     description: 'API for managing contacts.',
     version: '1.0.0',
   },
-  host: renderHost || 'localhost:8080',
+  host: renderHost || 'cse341-contacts-x8g5.onrender.com',
   schemes: renderHost ? ['https'] : ['http', 'https'],
   basePath: '/contacts',
 }
