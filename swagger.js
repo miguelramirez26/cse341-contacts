@@ -3,6 +3,7 @@ const swaggerAutogen = require('swagger-autogen')()
 const outputFile = './swagger.json'
 const endpointsFiles = ['./routes/*.js']
 const renderHost = process.env.RENDER_EXTERNAL_HOSTNAME
+const isProduction = Boolean(renderHost || process.env.NODE_ENV === 'production')
 
 const document = {
   info: {
@@ -10,8 +11,8 @@ const document = {
     description: 'API for managing contacts.',
     version: '1.0.0',
   },
-  host: renderHost || 'cse341-contacts-x8g5.onrender.com',
-  schemes: renderHost ? ['https'] : ['http', 'https'],
+  host: renderHost || 'localhost:8080',
+  schemes: isProduction ? ['https'] : ['http', 'https'],
   basePath: '/contacts',
 }
 
