@@ -4,7 +4,7 @@ const outputFile = './swagger.json'
 const endpointsFiles = ['./routes/*.js']
 const renderHost = process.env.RENDER_EXTERNAL_HOSTNAME
 const isProduction = Boolean(renderHost || process.env.NODE_ENV === 'production')
-const productionHost = renderHost || 'cse341-contacts.onrender.com'
+const productionHost = renderHost || 'cse341-contacts-x8g5.onrender.com'
 
 const document = {
   info: {
