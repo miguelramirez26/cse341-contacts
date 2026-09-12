@@ -1,14 +1,17 @@
 require('dotenv').config()
 
 const express = require('express')
+const swaggerUi = require('swagger-ui-express')
 const { connectToDatabase } = require('./config/db')
 const contactsRoutes = require('./routes/contacts')
+const swaggerDocument = require('./swagger.json')
 
 const app = express()
 const port = process.env.PORT || 8080
 
 app.use(express.json())
 app.use('/contacts', contactsRoutes)
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 app.use((error, request, response, next) => {
 	console.error(error)

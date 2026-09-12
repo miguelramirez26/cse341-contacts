@@ -1,0 +1,35 @@
+@baseUrl = http://localhost:8080
+@exampleContactId = 6a9c70f1e2fbb5db3a02d32f
+
+### 1. Obtener todos los contactos
+GET {{baseUrl}}/contacts
+
+### 2. Obtener un contacto por ID
+GET {{baseUrl}}/contacts/{{exampleContactId}}
+
+### 3. Crear un contacto
+POST {{baseUrl}}/contacts
+Content-Type: application/json
+
+{
+  "firstName": "Ana",
+  "lastName": "Ramirez",
+  "email": "ana.ramirez@example.com",
+  "favoriteColor": "Morado",
+  "birthday": "1998-03-15"
+}
+
+### 4. Actualizar el contacto creado
+PUT {{baseUrl}}/contacts/{{exampleContactId}}
+Content-Type: application/json
+
+{
+  "firstName": "Ana",
+  "lastName": "Ramirez Garcia",
+  "email": "ana.ramirez.updated@example.com",
+  "favoriteColor": "Verde",
+  "birthday": "1998-03-15"
+}
+
+### 5. Eliminar el contacto creado
+DELETE {{baseUrl}}/contacts/{{exampleContactId}}

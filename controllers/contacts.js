@@ -36,7 +36,64 @@ async function getContactById(request, response, next) {
   }
 }
 
+async function createContact(request, response, next) {
+  try {
+    const {
+      firstName,
+      lastName,
+      email,
+      favoriteColor,
+      birthday,
+    } = request.body
+
+    const result = await getDatabase()
+      .collection('contacts')
+      .insertOne({
+        firstName,
+        lastName,
+        email,
+        favoriteColor,
+        birthday,
+      })
+
+    response.status(201).json({ id: result.insertedId })
+  } catch (error) {
+    next(error)
+  }
+}
+
+async function updateContact(request, response, next) {
+  try {
+    const contactId = new ObjectId(request.params.id)
+
+    await getDatabase()
+      .collection('contacts')
+      .replaceOne({ _id: contactId }, request.body)
+
+    response.status(204).send()
+  } catch (error) {
+    next(error)
+  }
+}
+
+async function deleteContact(request, response, next) {
+  try {
+    const contactId = new ObjectId(request.params.id)
+
+    await getDatabase()
+      .collection('contacts')
+      .deleteOne({ _id: contactId })
+
+    response.status(204).send()
+  } catch (error) {
+    next(error)
+  }
+}
+
 module.exports = {
   getAllContacts,
   getContactById,
+  createContact,
+  updateContact,
+  deleteContact,
 }
